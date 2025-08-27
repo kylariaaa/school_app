@@ -7,7 +7,7 @@
         <!-- Background -->
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover opacity-30"
-                src="https://placehold.co/1920x1080/000000/FFFFFF?text=Gedung+Sekolah" alt="SMK Plus Pelita Nusantara">
+                src="" alt="SMK Plus Pelita Nusantara">
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
         </div>
 
