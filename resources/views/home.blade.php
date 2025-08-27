@@ -7,13 +7,13 @@
         <!-- Background -->
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover opacity-30"
-                src="" alt="SMK Plus Pelita Nusantara">
+                src="https://i.ytimg.com/vi/uRv_LGjcGX8/maxresdefault.jpg" alt="SMK Plus Pelita Nusantara">
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
         </div>
 
         <!-- Hero Section -->
         <div class="relative z-10 py-24 md:py-32 text-center shadow-lg">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-down">
                 Selamat Datang di Aplikasi SMK Plus Pelita Nusantara
             </h1>
             <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed animate-fade-in-down">
