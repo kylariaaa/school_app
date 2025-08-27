@@ -18,8 +18,8 @@ class Student extends Model
         'gender',
         'alamat',
         'email',
-        'classroom_id'
-    ];
+        'school_class_id',
+];
 
     /**
      * Relasi One-to-Many (inverse): Seorang siswa dimiliki oleh satu kelas
@@ -35,5 +35,10 @@ class Student extends Model
     public function teachers(): BelongsToMany
     {
         return $this->belongsToMany(Teacher::class, 'student_teacher');
+    }
+
+    public function schoolClass()
+    {
+        return $this->belongsTo(SchoolClass::class);
     }
 }

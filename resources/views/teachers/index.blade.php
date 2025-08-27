@@ -1,116 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Daftar Guru</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2rem;
-            background-color: #f7fafc;
-        }
+@extends('layouts.main')
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+@section('title', 'Daftar Guru')
 
-        h1 {
-            text-align: center;
-            color: #2d3748;
-        }
-
-        .action-link {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: #4a90e2;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        th {
-            background-color: #edf2f7;
-            font-weight: bold;
-        }
-
-        .btn-edit,
-        .btn-delete {
-            padding: 0.25rem 0.75rem;
-            text-decoration: none;
-            border-radius: 4px;
-            color: white;
-        }
-
-        .btn-edit {
-            background-color: #48bb78;
-        }
-
-        .btn-delete {
-            background-color: #f56565;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Daftar Guru</h1>
-
-        <a href="{{ url('teachers/create') }}" class="action-link">
-            Tambah Guru Baru
+@section('content')
+<div class="container mx-auto py-12 px-4">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-white">Daftar Guru</h1>
+        <a href="{{ route('teachers.create') }}"
+           class="bg-sky-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg hover:bg-sky-700 transition-colors duration-300">
+            + Tambah Guru
         </a>
+    </div>
 
-        @if(session('success'))
-            <div style="background-color: #f0fff4; color: #38a169; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
-                {{ session('success') }}
-            </div>
-        @endif
+    <!-- Alert Success -->
+    @if (session('success'))
+        <div class="bg-green-500 text-white px-4 py-3 rounded-lg relative mb-6 text-center shadow-md animate-fade-in-down">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
 
-        <table>
-            <thead>
+    <!-- Table -->
+    <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-x-auto border border-gray-700">
+        <table class="min-w-full divide-y divide-gray-700">
+            <thead class="bg-gray-700">
                 <tr>
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">#</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">NIP</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Nama</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Email</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Bidang Studi</th>
+                    <th scope="col" class="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-gray-800 divide-y divide-gray-700">
                 @foreach($teachers as $teacher)
-                    <tr>
-                        <td>{{ $teacher->nip }}</td>
-                        <td>{{ $teacher->nama }}</td>
-                        <td>{{ $teacher->email }}</td>
-                        <td>
-                            <a href="{{ url('teachers/' . $teacher->id . '/edit') }}" class="btn-edit">Edit</a>
+                    <tr class="hover:bg-gray-700 transition-colors duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $teacher->nip }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $teacher->nama }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $teacher->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $teacher->bidang_studi }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                            <div class="flex justify-center space-x-2">
+                                <!-- Edit -->
+                                <a href="{{ route('teachers.edit', $teacher->id) }}"
+                                   class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition-colors duration-200">
+                                    Edit
+                                </a>
 
-                            <form action="{{ url('teachers/' . $teacher->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-delete">Hapus</button>
-                            </form>
+                                <!-- Hapus -->
+                                <form action="{{ route('teachers.destroy', $teacher->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors duration-200"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+@endsection

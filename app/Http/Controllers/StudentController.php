@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\SchoolClass;
 
 class StudentController extends Controller
 {
@@ -17,14 +18,14 @@ class StudentController extends Controller
     // CREATE: Menampilkan form tambah data
     public function create()
     {
-        return view('students.create');
-    }
+        $classes = SchoolClass::all();
 
+        return view('students.create', compact('classes'));
+    }
     // CREATE: Menyimpan data baru dari form
     public function store(Request $request)
     {
         Student::create($request->all());
-
         return redirect('/students')
             ->with('success', 'Data siswa berhasil ditambahkan!');
     }
@@ -32,9 +33,9 @@ class StudentController extends Controller
     // UPDATE: Menampilkan form edit
     public function edit(Student $student)
     {
-        return view('students.edit', compact('student'));
+        $classes = SchoolClass::all();
+        return view('students.edit', compact('student', 'classes'));
     }
-
     // UPDATE: Memperbarui data yang ada
     public function update(Request $request, Student $student)
     {

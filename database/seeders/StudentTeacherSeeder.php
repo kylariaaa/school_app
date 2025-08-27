@@ -14,27 +14,29 @@ class StudentTeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ambil semua ID siswa dan guru yang sudah ada di database
+        // Ambil semua ID siswa dan guru
         $studentIds = Student::pluck('id')->all();
         $teacherIds = Teacher::pluck('id')->all();
 
-        // Pastikan ada data siswa dan guru sebelum melanjutkan
+        // Pastikan ada data siswa & guru sebelum membuat relasi
         if (empty($studentIds) || empty($teacherIds)) {
-            $this->command->warn("⚠️ Pastikan sudah menjalankan StudentSeeder dan TeacherSeeder terlebih dahulu.");
+            $this->command->warn('⚠️ Jalankan StudentSeeder & TeacherSeeder terlebih dahulu.');
             return;
         }
 
-        // Loop untuk setiap siswa dan hubungkan dengan beberapa guru secara acak
+        // Hubungkan setiap siswa dengan 1–3 guru secara acak
         foreach ($studentIds as $studentId) {
-            // Pilih 1 hingga 3 guru secara acak untuk setiap siswa
-            $randomTeachers = (array) array_rand($teacherIds, rand(1, min(3, count($teacherIds))));
+            $randomTeachers = array_rand($teacherIds, rand(1, min(3, count($teacherIds))));
+
+            // Ubah menjadi array jika hanya 1 guru
+            if (!is_array($randomTeachers)) {
+                $randomTeachers = [$randomTeachers];
+            }
 
             foreach ($randomTeachers as $teacherKey) {
                 DB::table('student_teacher')->insert([
                     'student_id' => $studentId,
                     'teacher_id' => $teacherIds[$teacherKey],
-                    'created_at' => now(),
-                    'updated_at' => now(),
                 ]);
             }
         }

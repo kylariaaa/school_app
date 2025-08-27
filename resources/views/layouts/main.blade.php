@@ -2,33 +2,79 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-    <title>Aplikasi Sekolah - @yield('title')</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title') - Aplikasi Sekolah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in-down {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-down {
+            animation: fade-in-down 0.8s ease-out forwards;
+        }
+    </style>
 </head>
 
-<body>
-    <header style="background-color: #f8f9fa; padding:15px; border-bottom: 1px solid #e7e7e7; text-align:center;">
-        <h1><a href="/" style="text-decoration: none; color: #333;">Aplikasi Web Sekolah</a></h1>
-        <nav style="margin-top: 10px;">
+<body class="bg-gray-900 text-gray-200 font-sans">
 
-            <a href="/" style="margin: 0 10px; textdecoration: none; color: blue;">Beranda</a>
-            <a href="/about" style="margin: 0 10px; textdecoration: none; color: blue;">Tentang Kami</a> |
-            <a href="/dashboard" style="margin: 0 10px; text-decoration: none; color: blue;">Dashboard</a>
-            <a href="/teacher" style="margin: 0 10px; text-decoration: none; color: blue;">TeacherList</a>
-
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-lg border-b-2 border-sky-500">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="/" class="text-2xl font-bold text-white hover:text-sky-400 transition-colors duration-300">
+                    SMK Plus Pelita Nusantara
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/" class="text-gray-300 hover:text-white transition-colors duration-300">Beranda</a>
+                <a href="/dashboard" class="text-gray-300 hover:text-white transition-colors duration-300">Dashboard</a>
+                <a href="{{ route('students.index') }}"
+                    class="text-gray-300 hover:text-white transition-colors duration-300">Siswa</a>
+                <a href="{{ route('teachers.index') }}"
+                    class="text-gray-300 hover:text-white transition-colors duration-300">Guru</a>
+                <a href="{{ route('school-classes.index') }}"
+                    class="text-gray-300 hover:text-white transition-colors duration-300">Kelas</a>
+                <a href="/about" class="text-gray-300 hover:text-white transition-colors duration-300">Tentang</a>
+            </div>
         </nav>
     </header>
 
-    <main style="padding: 20px; min-height: 400px;">
-        @yield('content') {{-- Ini adalah "lubang" untuk konten utama halaman --}}
+    <!-- Main Content -->
+    <main>
+        @yield('content')
     </main>
 
-    <footer style="background-color: #f8f9fa; padding:10px; border-top: 1px solid #e7e7e7; text-align: center; margin-top: 20px;">
-        <p>&copy; 2025 SMK PLUS PELITA NUSANTARA. Hak
-            Cipta Dilindungi.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12 py-6 text-center border-t-2 border-sky-500">
+        <p class="text-gray-400">&copy; 2025 SMK Plus Pelita Nusantara – XII RPL.</p>
     </footer>
 
 </body>
+
 </html>

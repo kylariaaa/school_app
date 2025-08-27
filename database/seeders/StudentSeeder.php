@@ -23,7 +23,7 @@ class StudentSeeder extends Seeder
                 'nis'           => '1210' . str_pad($i + 1, 3, '0', STR_PAD_LEFT),
                 'nama'          => $faker->name,
                 'tanggal_lahir' => $faker->date(),
-                'gender'        => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'gender'        => $faker->randomElement(['L', 'P']),
                 'alamat'        => $faker->address,
                 'email'         => $faker->unique()->safeEmail,
                 'classroom_id'  => $faker->randomElement($classroomIds),

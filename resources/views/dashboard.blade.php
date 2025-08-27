@@ -1,17 +1,35 @@
 @extends('layouts.main')
-@section('title', 'Dashboard Admin')
+
+@section('title', 'Dashboard')
+
 @section('content')
-<h1>Dashboard Admin</h1>
-<p>Halo, <b>{{ $namaAdmin }}</b>! Selamat datang di panel administrasi Aplikasi Web Sekolah.</p>
-<div style="background-color: #e9ecef; padding: 15px;
-border-radius: 5px;">
-    <h3>Statistik Cepat:</h3>
-    <ul>
-        <li>Jumlah Siswa: {{ $jumlahSiswa }}</li>
-        <li>Jumlah Guru: {{ $jumlahGuru }}</li>
-    </ul>
-</div>
-<br>
-<p>Nanti di sini akan ada ringkasan data penting dan
-    fitur-fitur administrasi.</p>
+    <div class="py-20 px-4 text-white">
+        <div class="container mx-auto p-8 bg-gray-800 rounded-3xl shadow-2xl text-center border-2 border-sky-500">
+
+            <!-- Title -->
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">Dashboard Aplikasi</h1>
+
+            <!-- Description -->
+            <p class="text-gray-400 max-w-xl mx-auto leading-relaxed">
+                Halaman ini akan menjadi pusat kontrol personal Anda setelah kita membangun fitur otentikasi dan hak akses.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+
+                <!-- Button: Mulai Jelajah -->
+                <a href="#" class="bg-sky-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl
+                     hover:bg-sky-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+                    Mulai Jelajah
+                </a>
+
+                <!-- Button: Bantuan -->
+                <a href="#" class="bg-gray-700 text-gray-200 px-8 py-4 rounded-full font-semibold shadow-xl
+                     hover:bg-gray-600 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+                    Bantuan
+                </a>
+            </div>
+
+        </div>
+    </div>
 @endsection

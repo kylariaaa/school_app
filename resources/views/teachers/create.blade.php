@@ -1,94 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Guru Baru</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2rem;
-            background-color: #f7fafc;
-        }
+@extends('layouts.main')
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+@section('title', 'Tambah Guru')
 
-        h1 {
-            text-align: center;
-            color: #2d3748;
-        }
+@section('content')
+    <div class="container mx-auto py-12 px-4">
+        <div class="max-w-xl mx-auto p-8 bg-gray-800 rounded-3xl shadow-2xl border-2 border-sky-500">
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-submit:hover {
-            background-color: #3f7ac6;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Tambah Guru Baru</h1>
-        <form action="{{ url('teachers') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="nip">NIP:</label>
-                <input type="text" name="nip" id="nip">
+            {{-- Header --}}
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-white">Tambah Guru Baru</h1>
+                <a href="{{ route('teachers.index') }}"
+                    class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8
+                              M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                    </svg>
+                    Kembali
+                </a>
             </div>
 
-            <div class="form-group">
-                <label for="nama">Nama:</label>
-                <input type="text" name="nama" id="nama">
-            </div>
+            {{-- Form --}}
+            <form action="{{ route('teachers.store') }}" method="POST" class="space-y-4">
+                @csrf
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-            </div>
+                <div>
+                    <label for="nip" class="block text-sm font-medium text-gray-300">NIP</label>
+                    <input type="text" name="nip" id="nip" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600
+                                  text-white focus:ring-sky-500 focus:border-sky-500">
+                </div>
 
-            <div class="form-group">
-                <label for="bidang_studi">bidang studi:</label>
-                <input type="text" name="bidang_studi" id="bidang_studi">
-            </div>
+                <div>
+                    <label for="nama" class="block text-sm font-medium text-gray-300">Nama</label>
+                    <input type="text" name="nama" id="nama" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600
+                                  text-white focus:ring-sky-500 focus:border-sky-500">
+                </div>
 
-            <button type="submit" class="btn-submit">Simpan</button>
-        </form>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                    <input type="email" name="email" id="email" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600
+                                  text-white focus:ring-sky-500 focus:border-sky-500">
+                </div>
+
+                <div>
+                    <label for="bidang_studi" class="block text-sm font-medium text-gray-300">Bidang Studi</label>
+                    <input type="text" name="bidang_studi" id="bidang_studi" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600
+                                  text-white focus:ring-sky-500 focus:border-sky-500">
+                </div>
+
+                <div class="mt-6">
+                    <button type="submit" class="w-full bg-sky-600 text-white py-2 px-4 rounded-md font-semibold
+                                   hover:bg-sky-700 transition-colors duration-300">
+                        Simpan Data Guru
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</body>
-</html>
+@endsection

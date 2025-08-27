@@ -1,103 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Daftar Siswa</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2rem;
-            background-color: #f7fafc;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #2d3748;
-        }
-        .action-link {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: #4a90e2;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        th {
-            background-color: #edf2f7;
-            font-weight: bold;
-        }
-        .btn-edit, .btn-delete {
-            padding: 0.25rem 0.75rem;
-            text-decoration: none;
-            border-radius: 4px;
-            color: white;
-        }
-        .btn-edit {
-            background-color: #48bb78;
-        }
-        .btn-delete {
-            background-color: #f56565;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Daftar Siswa</h1>
+@extends('layouts.main')
 
-        <a href="{{ url('students/create') }}" class="action-link">Tambah Siswa Baru</a>
+@section('title', 'Daftar Siswa')
 
-        @if(session('success'))
-            <div style="background-color: #f0fff4; color: #38a169; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
-                {{ session('success') }}
+@section('content')
+    <div class="container mx-auto py-12 px-4">
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-white">Daftar Siswa</h1>
+            <a href="{{ route('students.create') }}" class="bg-sky-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg
+                   hover:bg-sky-700 transition-colors duration-300">
+                + Tambah Siswa
+            </a>
+        </div>
+
+        <!-- Success Alert -->
+        @if (session('success'))
+            <div class="bg-green-500 text-white px-4 py-3 rounded-lg relative mb-6 text-center
+                          shadow-md animate-fade-in-down">
+                <span class="block sm:inline">{{ session('success') }}</span>
             </div>
         @endif
 
-        <table>
-            <thead>
-                <tr>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($students as $student)
+        <!-- Table -->
+        <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-x-auto border border-gray-700">
+            <table class="min-w-full divide-y divide-gray-700">
+
+                <!-- Table Head -->
+                <thead class="bg-gray-700">
                     <tr>
-                        <td>{{ $student->nis }}</td>
-                        <td>{{ $student->nama }}</td>
-                        <td>{{ $student->email }}</td>
-                        <td>
-                            <a href="{{ url('students/' . $student->id . '/edit') }}" class="btn-edit">Edit</a>
-                            <form action="{{ url('students/' . $student->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-delete">Hapus</button>
-                            </form>
-                        </td>
+                        <th scope="col"
+                            class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">#</th>
+                        <th scope="col"
+                            class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">NIS
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Nama
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Email
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">Aksi
+                        </th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                    @forelse($students as $student)
+                        <tr class="hover:bg-gray-700 transition-colors duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $student->nis }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $student->nama }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{{ $student->email }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                                <div class="flex justify-center space-x-2">
+
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('students.edit', $student->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600
+                                   transition-colors duration-200">
+                                        Edit
+                                    </a>
+
+                                    <!-- Delete Button -->
+                                    <form action="{{ route('students.destroy', $student->id) }}" method="POST"
+                                        class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600
+                                     transition-colors duration-200"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center py-6 text-gray-400">Tidak ada data siswa.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
-</body>
-</html>
+@endsection
