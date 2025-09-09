@@ -16,3 +16,7 @@ Route::resource('teachers', TeacherController::class);
 
 Route::get('/teachers/with-students', [TeacherController::class, 'listTeachersWithStudents']);
 Route::resource('school-classes', SchoolClassController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
