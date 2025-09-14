@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -7,33 +6,15 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+    use AuthenticatesUsers; // <-- trait yang berisi logika login
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+    // setelah login berhasil, user diarahkan ke /dashboard
     protected $redirectTo = '/dashboard';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
+        // middleware guest: hanya bisa akses login saat belum login
+        // except logout: agar logout tetap bisa dijalankan meski sudah login
         $this->middleware('guest')->except('logout');
     }
 }

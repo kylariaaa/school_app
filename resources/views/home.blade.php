@@ -1,17 +1,13 @@
 @extends('layouts.main')
-
 @section('title', 'Beranda')
-
 @section('content')
 <div class="relative bg-gray-900 text-white">
     <div class="absolute inset-0">
-        <img
-            class="w-full h-full object-cover opacity-30"
-            src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4np33ftf_EGmQmQmQgSDglsb7iIPSOz4KXw7IEsVvta-MDpGyRth6ruJG35XtaNs_K_x03FUaLBV2GSUUOyNF8r781S3tDI5geqMbRozlxSteL0dke17_8tCHI6eJBpZn3oXi1E6so7g=s680-w680-h510-rw"
+        <img class="w-full h-full object-cover opacity-30"
+            src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4np33ftf_EGmQmQgSDglsb7iIPSOz4KXw7IEsVvta-MDpGyRth6ruJG35XtaNs_K_x03FUaLBV2GSUUOyNF8r781S3tDI5geqMbRozlxSteL0dke17_8tCHI6eJBpZn3oXi1E6so7g=s680-w680-h510-rw"
             alt="Gedung Sekolah">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
     </div>
-
     <div class="relative z-10 py-24 md:py-32 text-center shadow-lg">
         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up">
             Selamat Datang di Aplikasi SMK Plus Pelita Nusantara
@@ -24,22 +20,18 @@
 
 <div class="container mx-auto py-16 px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
         <div class="p-8 bg-gray-800 rounded-2xl border-2 border-sky-500 text-center transform hover:scale-105 transition-transform duration-300">
             <h3 class="text-xl font-semibold mb-2 text-white">Manajemen Siswa</h3>
             <p class="text-gray-400">Kelola data siswa secara lengkap dan terstruktur.</p>
         </div>
-
         <div class="p-8 bg-gray-800 rounded-2xl border-2 border-sky-500 text-center transform hover:scale-105 transition-transform duration-300">
             <h3 class="text-xl font-semibold mb-2 text-white">Manajemen Guru</h3>
             <p class="text-gray-400">Kelola data guru dan mata pelajaran yang diampu.</p>
         </div>
-
         <div class="p-8 bg-gray-800 rounded-2xl border-2 border-sky-500 text-center transform hover:scale-105 transition-transform duration-300">
             <h3 class="text-xl font-semibold mb-2 text-white">Antarmuka Modern</h3>
             <p class="text-gray-400">Desain bersih dan responsif untuk pengalaman pengguna terbaik.</p>
         </div>
-
     </div>
 </div>
 @endsection

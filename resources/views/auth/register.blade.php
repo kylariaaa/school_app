@@ -1,75 +1,108 @@
 @extends('layouts.main')
 
+@section('title', 'Register')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="container mx-auto">
+    <div class="flex justify-center">
+        <div class="w-full max-w-md">
+            <div class="bg-gray-800 shadow-md rounded-2xl p-8 border border-gray-700">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                {{-- Judul --}}
+                <h1 class="text-2xl font-bold text-white text-center mb-6">{{ __('Register') }}</h1>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                {{-- Form Register --}}
+                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    @csrf
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    {{-- Input Nama --}}
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">
+                            {{ __('Nama') }}
+                        </label>
+                        <div class="mt-1">
+                            <input
+                                id="name"
+                                type="text"
+                                name="name"
+                                value="{{ old('name') }}"
+                                required
+                                autocomplete="name"
+                                autofocus
+                                class="w-full p-3 rounded-md bg-gray-700 border text-white focus:ring-sky-500 focus:border-sky-500 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-600' }}"
+                            >
                         </div>
+                        @error('name')
+                            <p class="mt-2 text-sm text-red-500" role="alert">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    {{-- Input Email --}}
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">
+                            {{ __('Alamat Email') }}
+                        </label>
+                        <div class="mt-1">
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required
+                                autocomplete="email"
+                                class="w-full p-3 rounded-md bg-gray-700 border text-white focus:ring-sky-500 focus:border-sky-500 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}"
+                            >
                         </div>
+                        @error('email')
+                            <p class="mt-2 text-sm text-red-500" role="alert">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    {{-- Input Password --}}
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-300">
+                            {{ __('Password') }}
+                        </label>
+                        <div class="mt-1">
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                required
+                                autocomplete="new-password"
+                                class="w-full p-3 rounded-md bg-gray-700 border text-white focus:ring-sky-500 focus:border-sky-500 {{ $errors->has('password') ? 'border-red-500' : 'border-gray-600' }}"
+                            >
                         </div>
+                        @error('password')
+                            <p class="mt-2 text-sm text-red-500" role="alert">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                    {{-- Input Konfirmasi Password --}}
+                    <div>
+                        <label for="password-confirm" class="block text-sm font-medium text-gray-300">
+                            {{ __('Konfirmasi Password') }}
+                        </label>
+                        <div class="mt-1">
+                            <input
+                                id="password-confirm"
+                                type="password"
+                                name="password_confirmation"
+                                required
+                                autocomplete="new-password"
+                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white focus:ring-sky-500 focus:border-sky-500"
+                            >
                         </div>
+                    </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    {{-- Tombol Submit --}}
+                    <div>
+                        <button type="submit" class="w-full bg-sky-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-sky-700 transition-colors duration-300">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

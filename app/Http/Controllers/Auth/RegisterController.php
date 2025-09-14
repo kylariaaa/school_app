@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -18,9 +17,10 @@ class RegisterController extends Controller
 
     public function __construct()
     {
-        //
+        $this->middleware('guest');
     }
 
+    // Validasi input register
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -30,6 +30,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    // Membuat user baru
     protected function create(array $data)
     {
         return User::create([
@@ -39,6 +40,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    // Override register method bawaan
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
