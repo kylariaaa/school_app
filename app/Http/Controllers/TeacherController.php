@@ -47,7 +47,7 @@ class TeacherController extends Controller
     // DELETE: Menghapus data
     public function destroy(Teacher $teacher)
     {
-        $teacher->delete();
+        $teacher->delete(); 
 
         return redirect('/teachers')
             ->with('success', 'Data guru berhasil dihapus!');
