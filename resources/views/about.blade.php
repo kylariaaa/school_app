@@ -13,7 +13,7 @@
             <p class="text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Aplikasi ini merupakan proyek pembelajaran yang dirancang untuk mengaplikasikan berbagai konsep
                 pengembangan web modern menggunakan <strong>framework Laravel</strong>.
-                Setiap fitur yang kita bangun didasarkan pada kebutuhan riil di dunia kerja.
+                Setiap fitur yang kita bangun didasarkan pada kebutuhan nyata di dunia.
             </p>
 
             <!-- Contributors -->

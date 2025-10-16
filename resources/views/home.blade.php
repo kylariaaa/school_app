@@ -4,12 +4,12 @@
 <div class="relative bg-gray-900 text-white">
     <div class="absolute inset-0">
         <img class="w-full h-full object-cover opacity-30"
-            src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4np33ftf_EGmQmQgSDglsb7iIPSOz4KXw7IEsVvta-MDpGyRth6ruJG35XtaNs_K_x03FUaLBV2GSUUOyNF8r781S3tDI5geqMbRozlxSteL0dke17_8tCHI6eJBpZn3oXi1E6so7g=s680-w680-h510-rw"
+            src="{{ asset('images/uwashi.jpg') }}"
             alt="Gedung Sekolah">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
     </div>
     <div class="relative z-10 py-24 md:py-32 text-center shadow-lg">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up p-1">
             Selamat Datang di Aplikasi SMK Plus Pelita Nusantara
         </h1>
         <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed animate-fade-in-down" style="animation-delay: 0.3s;">
