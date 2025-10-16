@@ -8,8 +8,8 @@
             alt="Gedung Sekolah">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
     </div>
-    <div class="relative z-10 py-24 md:py-32 text-center shadow-lg">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up p-1">
+    <div class="relative z-10 py-24 md:py-20 text-center shadow-lg">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-up p-3">
             Selamat Datang di Aplikasi SMK Plus Pelita Nusantara
         </h1>
         <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed animate-fade-in-down" style="animation-delay: 0.3s;">
