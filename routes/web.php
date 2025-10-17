@@ -11,15 +11,15 @@ use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
-| RUTE PUBLIK
+| Rute Publik
 |--------------------------------------------------------------------------
 */
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [HomeController::class, 'about']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 /*
 |--------------------------------------------------------------------------
-| RUTE AUTENTIKASI (DEFINISI MANUAL)
+| Rute Autentikasi (Manual)
 |--------------------------------------------------------------------------
 */
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -31,11 +31,12 @@ Route::post('register', [RegisterController::class, 'register']);
 
 /*
 |--------------------------------------------------------------------------
-| RUTE TERPROTEKSI
+| Rute Terproteksi (Hanya untuk pengguna login)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('students', StudentController::class);
     Route::resource('teachers', TeacherController::class);
     Route::resource('school-classes', SchoolClassController::class);

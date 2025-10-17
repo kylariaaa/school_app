@@ -19,38 +19,34 @@
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans">
-    <header class="bg-gray-800 shadow-lg border-b-2 border-sky-500">
+
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-lg border-b-2 border-sky-500 sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div>
-                <a href="/" class="text-2xl font-bold text-white hover:text-sky-400">
+                <a href="{{ route('home') }}" class="text-2xl font-bold text-white hover:text-sky-400">
                     SMK Plus Pelita Nusantara
                 </a>
             </div>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="/" class="text-gray-300 hover:text-white">Beranda</a>
-                <a href="/about" class="text-gray-300 hover:text-white">Tentang</a>
+                <a href="{{ route('home') }}" class="text-gray-300 hover:text-white">Beranda</a>
+                <a href="{{ route('about') }}" class="text-gray-300 hover:text-white">Tentang</a>
 
                 @guest
-                    <a href="{{ route('login') }}" class="bg-sky-600 text-white px-4 py-2 rounded-full hover:bg-sky-700">
-                        Login
-                    </a>
+                    <a href="{{ route('login') }}" class="bg-sky-600 text-white px-4 py-2 rounded-full hover:bg-sky-700">Login</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="bg-sky-600 text-white px-4 py-2 rounded-full hover:bg-sky-700">
-                            Register
-                        </a>
+                        <a href="{{ route('register') }}" class="bg-sky-600 text-white px-4 py-2 rounded-full hover:bg-sky-700">Register</a>
                     @endif
                 @else
                     <a href="{{ route('dashboard') }}" class="text-gray-300 hover:text-white">Dashboard</a>
                     <a href="{{ route('students.index') }}" class="text-gray-300 hover:text-white">Siswa</a>
                     <a href="{{ route('teachers.index') }}" class="text-gray-300 hover:text-white">Guru</a>
                     <a href="{{ route('school-classes.index') }}" class="text-gray-300 hover:text-white">Kelas</a>
-
                     <span class="text-white font-semibold">{{ Auth::user()->name }}</span>
-
                     <a href="{{ route('logout') }}"
                         class="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
+                        Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         @csrf
@@ -60,12 +56,66 @@
         </nav>
     </header>
 
+    <!-- Main Content -->
     <main class="py-10">
         @yield('content')
     </main>
 
-    <footer class="bg-gray-800 mt-12 py-6 text-center border-t-2 border-sky-500">
-        <p class="text-gray-400">&copy; 2025 SMK Plus Pelita Nusantara – XII RPL</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12 pt-12 pb-8 text-center border-t-2 border-sky-500">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 text-left md:text-center">
+                <!-- Kolom 1 -->
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold text-white mb-4">SMK Plus Pelita Nusantara</h3>
+                    <p class="text-gray-400">
+                        Menjadi Sekolah Menengah Kejuruan Unggulan yang menghasilkan sumber daya manusia
+                        Terampil, Entrepreneur, dan Religius.
+                    </p>
+                </div>
+
+                <!-- Kolom 2 -->
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold text-white mb-4">Kontak Kami</h3>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><strong>Alamat:</strong> Jl. Golf RT06/08 Ciriung, Kec. Cibinong, Kab. Bogor</li>
+                        <li><strong>No. Telp:</strong> 021 83713168</li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3 -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Let’s Connect!</h3>
+                    <div class="flex justify-start md:justify-center space-x-4">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/smkpluspelitanusantara" target="_blank"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="http://www.youtube.com/@smkpluspelitanusantara9719" target="_blank"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@smkppelitanusantaracbng" target="_blank"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-tiktok text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 border-t border-gray-700 pt-6">
+                <p class="text-gray-500 text-center">
+                    &copy; {{ date('Y') }} SMK Plus Pelita Nusantara – Divisi RPL. All Rights Reserved.
+                </p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Tambahkan Font Awesome untuk ikon sosial -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
