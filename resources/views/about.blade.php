@@ -21,7 +21,7 @@
             <span class="font-semibold">"The Future is Ours!"</span>
         </div>
     </div>
-
+    
     <!-- Sejarah Singkat -->
     <div class="bg-gray-800 rounded-lg shadow-lg p-8 animate-fade-in-up">
         <h2 class="text-3xl font-bold text-white text-center mb-6">Sejarah Singkat</h2>
